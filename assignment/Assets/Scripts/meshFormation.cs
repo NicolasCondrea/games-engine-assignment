@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class meshFormation : MonoBehaviour
 {
+    public int xSquaresAmount = 20;
+    public int zSquaresAmount = 20;
+
     Mesh mesh;
     Vector3[] vertices;
     int[] trianglePoints;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,23 +34,45 @@ public class meshFormation : MonoBehaviour
 
     private void CreatePoints()
     {
+        vertices = new Vector3[(xSquaresAmount + 1) * (zSquaresAmount + 1)];
 
-        // Adding the vertices points in an array
-        vertices = new Vector3[]
-        {
-            new Vector3 (0, 0, 0),
-            new Vector3 (0, 0, 1),
-            new Vector3 (1, 0, 0),
-            new Vector3 (1, 0, 1),
-        };
+        int index = 0;
 
-        // Adding triangles
-        trianglePoints = new int[]
+        for(int i= 0; i <= zSquaresAmount; i++)
         {
-            // points must be in clockwise order or else backface culling will occur
-            0, 1, 2,
-            1, 3, 2
-        };
+            for(int j= 0; j <= xSquaresAmount; j++)
+            {
+                vertices[index] = new Vector3(i, 0, j);
+
+                index ++;
+
+            }
+        }
+
+
+        trianglePoints = new int[xSquaresAmount * zSquaresAmount * 6];
+
+        int tris = 0;
+        int verts = 0;
+
+        for (int i = 0; i < zSquaresAmount; i++)
+        {
+            for (int j = 0; j < xSquaresAmount; j++)
+            {
+                trianglePoints[tris + 0] = verts + 0;
+                trianglePoints[tris + 1] = verts + xSquaresAmount + 1;
+                trianglePoints[tris + 2] = verts + 1;
+                trianglePoints[tris + 3] = verts + 1;
+                trianglePoints[tris + 4] = verts + xSquaresAmount + 1;
+                trianglePoints[tris + 5] = verts + xSquaresAmount + 2;
+
+                tris += 6;
+                verts++;
+            }
+
+            verts++;
+        }
+
     }
 
     private void UpdateMesh()
@@ -60,5 +86,8 @@ public class meshFormation : MonoBehaviour
 
         // Display lighting correctly
         mesh.RecalculateNormals();
+
     }
+
+    
 }
