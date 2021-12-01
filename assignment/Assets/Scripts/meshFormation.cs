@@ -36,14 +36,16 @@ public class meshFormation : MonoBehaviour
         {
             new Vector3 (0, 0, 0),
             new Vector3 (0, 0, 1),
-            new Vector3 (1, 0, 0)
+            new Vector3 (1, 0, 0),
+            new Vector3 (1, 0, 1),
         };
 
         // Adding triangles
         trianglePoints = new int[]
         {
             // points must be in clockwise order or else backface culling will occur
-            0, 1, 2
+            0, 1, 2,
+            1, 3, 2
         };
     }
 
@@ -54,5 +56,9 @@ public class meshFormation : MonoBehaviour
 
         mesh.vertices = vertices;
         mesh.triangles = trianglePoints;
+
+
+        // Display lighting correctly
+        mesh.RecalculateNormals();
     }
 }
