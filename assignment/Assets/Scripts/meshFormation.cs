@@ -38,11 +38,12 @@ public class meshFormation : MonoBehaviour
 
         int index = 0;
 
-        for(int i= 0; i <= zSquaresAmount; i++)
+        for(int z= 0; z <= zSquaresAmount; z++)
         {
-            for(int j= 0; j <= xSquaresAmount; j++)
+            for(int x= 0; x <= xSquaresAmount; x++)
             {
-                vertices[index] = new Vector3(i, 0, j);
+                float y = Mathf.PerlinNoise(x * .3f, z * .3f) * 2f;
+                vertices[index] = new Vector3(x, y, z);
 
                 index ++;
 
@@ -55,9 +56,9 @@ public class meshFormation : MonoBehaviour
         int tris = 0;
         int verts = 0;
 
-        for (int i = 0; i < zSquaresAmount; i++)
+        for (int z = 0; z < zSquaresAmount; z++)
         {
-            for (int j = 0; j < xSquaresAmount; j++)
+            for (int x = 0; x < xSquaresAmount; x++)
             {
                 trianglePoints[tris + 0] = verts + 0;
                 trianglePoints[tris + 1] = verts + xSquaresAmount + 1;
