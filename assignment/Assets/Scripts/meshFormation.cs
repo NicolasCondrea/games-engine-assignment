@@ -8,9 +8,20 @@ public class meshFormation : MonoBehaviour
     public int xSquaresAmount = 20;
     public int zSquaresAmount = 20;
 
+    public int mapScale = 500;
+    public AnimationCurve heightCurve;
+
+    public float scale;
+    public int octaves;
+    public float lacunarity;
+
     Mesh mesh;
     Vector3[] vertices;
     int[] trianglePoints;
+
+    public int seed;
+    private System.Random prng;
+    private Vector2[] octaveOffsets;
 
 
     // Start is called before the first frame update
@@ -32,8 +43,31 @@ public class meshFormation : MonoBehaviour
         
     }
 
+    private Vector2[] getSeed()
+    {
+
+        seed = UnityEngine.Random.Range(0, 1000);
+        // changes area of map
+        System.Random prng = new System.Random(seed);
+        Vector2[] octaveOffsets = new Vector2[octaves];
+
+        for (int o = 0; o < octaves; o++)
+        {
+            float offsetX = prng.Next(-100000, 100000);
+            float offsetY = prng.Next(-100000, 100000);
+            octaveOffsets[o] = new Vector2(offsetX, offsetY);
+        }
+        return octaveOffsets;
+    }
+
     private void CreatePoints()
     {
+        // Here we are creating a seed 
+        Vector2[] octaveOffsets = getSeed();
+
+        if (scale <= 0)
+            scale = 0.0001f;
+
         vertices = new Vector3[(xSquaresAmount + 1) * (zSquaresAmount + 1)];
 
         int index = 0;
@@ -42,12 +76,20 @@ public class meshFormation : MonoBehaviour
         {
             for(int x= 0; x <= xSquaresAmount; x++)
             {
-                float y = Mathf.PerlinNoise(x * .3f, z * .3f) * 2f;
-                vertices[index] = new Vector3(x, y, z);
+
+                // Using noise to randomly assign height of vertices
+                float noiseHeight = noiseHeightCreation(z, x, octaveOffsets);
+                vertices[index] = new Vector3(x, noiseHeight, z);
 
                 index ++;
 
             }
+        }
+
+
+        private float noiseHeightCreation(int z, int x, Vector2[] octaveOffsets)
+        {
+            return 0;
         }
 
 
