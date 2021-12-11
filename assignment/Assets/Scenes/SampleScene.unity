@@ -333,6 +333,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSquaresAmount: 20
   zSquaresAmount: 20
+  mapScale: 500
+  heightCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scale: 0
+  octaves: 0
+  lacunarity: 0
+  seed: 0
 --- !u!23 &1308750435
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -408,5 +419,5 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 30
+  m_CookingOptions: -1
   m_Mesh: {fileID: 0}

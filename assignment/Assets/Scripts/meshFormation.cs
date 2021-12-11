@@ -3,14 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class meshFormation : MonoBehaviour
+public class MeshFormation : MonoBehaviour
 {
-    public int xSquaresAmount = 20;
-    public int zSquaresAmount = 20;
+    public int xSquaresAmount = 100;
+    public int zSquaresAmount = 100;
 
     public int mapScale = 500;
-    public AnimationCurve heightCurve;
-
     public float scale;
     public int octaves;
     public float lacunarity;
@@ -19,9 +17,9 @@ public class meshFormation : MonoBehaviour
     Vector3[] vertices;
     int[] trianglePoints;
 
+    public AnimationCurve heightCurve;
+
     public int seed;
-    private System.Random prng;
-    private Vector2[] octaveOffsets;
 
 
     // Start is called before the first frame update
@@ -31,6 +29,7 @@ public class meshFormation : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
 
         CreatePoints();
+        TriangleGeneration();
 
         // Applying changes to mesh
         UpdateMesh();
@@ -43,9 +42,8 @@ public class meshFormation : MonoBehaviour
         
     }
 
-    private Vector2[] getSeed()
+    private Vector2[] GetSeed()
     {
-
         seed = UnityEngine.Random.Range(0, 1000);
         // changes area of map
         System.Random prng = new System.Random(seed);
@@ -63,7 +61,7 @@ public class meshFormation : MonoBehaviour
     private void CreatePoints()
     {
         // Here we are creating a seed 
-        Vector2[] octaveOffsets = getSeed();
+        Vector2[] octaveOffsets = GetSeed();
 
         if (scale <= 0)
             scale = 0.0001f;
@@ -72,27 +70,24 @@ public class meshFormation : MonoBehaviour
 
         int index = 0;
 
-        for(int z= 0; z <= zSquaresAmount; z++)
+        for (int z = 0; z <= zSquaresAmount; z++)
         {
-            for(int x= 0; x <= xSquaresAmount; x++)
+            for (int x = 0; x <= xSquaresAmount; x++)
             {
 
                 // Using noise to randomly assign height of vertices
-                float noiseHeight = noiseHeightCreation(z, x, octaveOffsets);
+                float noiseHeight = NoiseHeightCreation(z, x, octaveOffsets);
                 vertices[index] = new Vector3(x, noiseHeight, z);
 
-                index ++;
+                index++;
 
             }
         }
 
+    }
 
-        private float noiseHeightCreation(int z, int x, Vector2[] octaveOffsets)
-        {
-            return 0;
-        }
-
-
+    public void TriangleGeneration()
+    {
         trianglePoints = new int[xSquaresAmount * zSquaresAmount * 6];
 
         int tris = 0;
@@ -118,6 +113,30 @@ public class meshFormation : MonoBehaviour
 
     }
 
+
+    private float NoiseHeightCreation(int z, int x, Vector2[] octaveOffsets)
+    {
+        float amplitude = 12;
+        float noiseHeight = 0;
+        float frequency = 1;
+        float persistence = 0.5f;
+
+        // loop over octaves
+        for (int y = 0; y < octaves; y++)
+        {
+            float Z = z / scale * frequency + octaveOffsets[y].y;
+            float X = x / scale * frequency + octaveOffsets[y].x;
+
+            // Create perlinValues and the * 2 - 1 is to create a flat floor
+            float perlinValue = (Mathf.PerlinNoise(Z, X)) * 2 - 1;
+            noiseHeight += heightCurve.Evaluate(perlinValue) * amplitude;
+            frequency *= lacunarity;
+            amplitude *= persistence;
+        }
+
+        return noiseHeight;
+    }
+
     private void UpdateMesh()
     {
         // Clearing any posible vertices and triangle data
@@ -129,8 +148,10 @@ public class meshFormation : MonoBehaviour
 
         // Display lighting correctly
         mesh.RecalculateNormals();
+        mesh.RecalculateTangents();
+
+        gameObject.transform.localScale = new Vector3(mapScale, mapScale, mapScale);
 
     }
 
-    
 }
