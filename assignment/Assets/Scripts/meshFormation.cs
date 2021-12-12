@@ -36,6 +36,7 @@ public class MeshFormation : MonoBehaviour
 
         CreatePoints();
         TriangleGeneration();
+        AddingColour();
 
         // Applying changes to mesh
         UpdateMesh();
@@ -83,6 +84,10 @@ public class MeshFormation : MonoBehaviour
 
                 // Using noise to randomly assign height of vertices
                 float noiseHeight = NoiseHeightCreation(z, x, octaveOffsets);
+
+                if (noiseHeight > maxHeightOfMap) maxHeightOfMap = noiseHeight;
+                if (noiseHeight < minHeightOfMap) minHeightOfMap = noiseHeight;
+
                 vertices[index] = new Vector3(x, noiseHeight, z);
 
                 index++;
@@ -145,8 +150,16 @@ public class MeshFormation : MonoBehaviour
 
     private void AddingColour()
     {
+        colors = new Color[vertices.Length];
 
+        int i = 0;
 
+        for (int z = 0; z < vertices.Length; z++)
+        {
+            float height = Mathf.InverseLerp(minHeightOfMap, maxHeightOfMap, vertices[i].y);
+            colors[i] = gradient.Evaluate(height);
+            i++;
+        }
     }
 
     private void UpdateMesh()
