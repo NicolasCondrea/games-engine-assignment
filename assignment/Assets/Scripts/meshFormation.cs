@@ -18,8 +18,14 @@ public class MeshFormation : MonoBehaviour
     int[] trianglePoints;
 
     public AnimationCurve heightCurve;
+    public Gradient gradient;
 
     public int seed;
+
+    private Color[] colors;
+
+    private float maxHeightOfMap;
+    private float minHeightOfMap;
 
 
     // Start is called before the first frame update
@@ -137,6 +143,12 @@ public class MeshFormation : MonoBehaviour
         return noiseHeight;
     }
 
+    private void AddingColour()
+    {
+
+
+    }
+
     private void UpdateMesh()
     {
         // Clearing any posible vertices and triangle data
@@ -144,7 +156,7 @@ public class MeshFormation : MonoBehaviour
 
         mesh.vertices = vertices;
         mesh.triangles = trianglePoints;
-
+        mesh.colors = colors;
 
         // Display lighting correctly
         mesh.RecalculateNormals();
