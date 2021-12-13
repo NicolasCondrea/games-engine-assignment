@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MeshFormation : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class MeshFormation : MonoBehaviour
 
     private float maxHeightOfMap;
     private float minHeightOfMap;
+
+    private float previousNoiseHeight;
 
 
     // Start is called before the first frame update
@@ -162,6 +165,32 @@ public class MeshFormation : MonoBehaviour
         }
     }
 
+    public void ObjectSpawns()
+    {
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            Vector3 vertexLocations = transform.TransformPoint(mesh.vertices[i]);
+
+            var noiseHeight = vertexLocations.y;
+
+            if (System.Math.Abs(previousNoiseHeight - vertexLocations.y) < 25)
+            {
+                if (noiseHeight > 100)
+                {
+                    if (UnityEngine.Random.Range(1, 5) == 1)
+                    {
+                        GameObject objectToSpawn = objects[UnityEngine.Random.Range(0, objects.Length)];
+                        var terrainSpawnHeight = noiseHeight * 2;
+
+                        Instantiate(objectToSpawn, new Vector3(mesh.vertices[i].x * mapScale, terrainSpawnHeight, mesh.vertices[i].z * mapScale), Quaternion.identity);
+                    }
+                }
+            }
+
+            previousNoiseHeight = noiseHeight;
+        }
+    }
+
     private void UpdateMesh()
     {
         // Clearing any posible vertices and triangle data
@@ -177,6 +206,7 @@ public class MeshFormation : MonoBehaviour
 
         gameObject.transform.localScale = new Vector3(mapScale, mapScale, mapScale);
 
+        ObjectSpawns();
     }
 
 }
