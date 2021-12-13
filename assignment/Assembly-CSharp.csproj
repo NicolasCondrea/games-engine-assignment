@@ -54,7 +54,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/MeshFormation.cs" />
-    <Compile Include="Assets/Scripts/Water.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

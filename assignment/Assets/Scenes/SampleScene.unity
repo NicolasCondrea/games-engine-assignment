@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 456597629}
   - component: {fileID: 456597628}
-  - component: {fileID: 456597627}
   - component: {fileID: 456597630}
   m_Layer: 0
   m_Name: Water
@@ -142,20 +141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &456597627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456597626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acd6c12b4f5fa4a03bcf7198c5e47cf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xSquaresAmount: 100
-  zSquaresAmount: 100
 --- !u!23 &456597628
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -205,8 +190,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456597626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16153.866, y: 9489.377, z: 5543.04}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 25000, y: 505, z: 25000}
+  m_LocalScale: {x: 50000, y: 1, z: 50000}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -218,7 +203,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456597626}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +308,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -395,6 +381,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1308750433
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,19 +481,19 @@ MonoBehaviour:
     key0: {r: 1, g: 1, b: 0.49019608, a: 1}
     key1: {r: 0.2830189, g: 0.24697402, b: 0.24697402, a: 1}
     key2: {r: 0.18022428, g: 0.2830189, b: 0.19833149, a: 0}
-    key3: {r: 0.18039216, g: 0.28235295, b: 0.2, a: 0}
-    key4: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0}
-    key5: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 0}
-    key6: {r: 1, g: 1, b: 1, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0.15686189, g: 0.23584908, b: 0.17205174, a: 0}
+    key4: {r: 0.18039216, g: 0.28235295, b: 0.2, a: 0}
+    key5: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0}
+    key6: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 0}
+    key7: {r: 1, g: 1, b: 1, a: 0}
     ctime0: 0
     ctime1: 10216
     ctime2: 18504
-    ctime3: 48573
-    ctime4: 54356
-    ctime5: 61487
-    ctime6: 65535
-    ctime7: 0
+    ctime3: 39899
+    ctime4: 47417
+    ctime5: 53006
+    ctime6: 58789
+    ctime7: 65535
     atime0: 0
     atime1: 65535
     atime2: 0
@@ -484,7 +503,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 7
+    m_NumColorKeys: 8
     m_NumAlphaKeys: 2
   seed: 0
 --- !u!23 &1308750435
