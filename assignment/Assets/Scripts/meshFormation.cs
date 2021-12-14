@@ -29,7 +29,7 @@ public class MeshFormation : MonoBehaviour
     private float minHeightOfMap;
 
     private float previousNoiseHeight;
-
+    public GameObject[] objects;
 
     // Start is called before the first frame update
     void Start()
