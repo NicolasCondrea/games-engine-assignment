@@ -506,6 +506,12 @@ MonoBehaviour:
     m_NumColorKeys: 8
     m_NumAlphaKeys: 2
   seed: 0
+  objects:
+  - {fileID: 100000, guid: 98791aa43884f864e8efd816a7841eac, type: 3}
+  - {fileID: 100000, guid: 5b8d1200b09c3384bafaef83c5cfc6df, type: 3}
+  - {fileID: 100000, guid: 600491ce39e51af4e88e958fad3f21d1, type: 3}
+  - {fileID: 100000, guid: d0a555f42830f0b4ea42031195259d2a, type: 3}
+  - {fileID: 100000, guid: 61efeedd509c7d44eb2acbc1b56a1e8f, type: 3}
 --- !u!23 &1308750435
 MeshRenderer:
   m_ObjectHideFlags: 0
