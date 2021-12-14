@@ -23,9 +23,9 @@ public class ObjectPlacement : MonoBehaviour
     void DetectCollider()
     {
         ray = new Ray(transform.position, -transform.up);
-
+        
         if (Physics.Raycast(ray, out detect)) transform.position = new Vector3(detect.point.y, detect.point.z);
-
+        
         else
         {
             ray = new Ray(transform.position, transform.up);

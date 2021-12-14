@@ -204,6 +204,8 @@ public class MeshFormation : MonoBehaviour
         mesh.RecalculateNormals();
         mesh.RecalculateTangents();
 
+        GetComponent<MeshCollider>().sharedMesh = mesh;
+
         gameObject.transform.localScale = new Vector3(mapScale, mapScale, mapScale);
 
         ObjectSpawns();
