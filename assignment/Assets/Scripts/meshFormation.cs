@@ -107,6 +107,8 @@ public class MeshFormation : MonoBehaviour
         int tris = 0;
         int verts = 0;
 
+        
+        // Putting the triangles onto the vertices
         for (int z = 0; z < zSquaresAmount; z++)
         {
             for (int x = 0; x < xSquaresAmount; x++)
@@ -135,15 +137,18 @@ public class MeshFormation : MonoBehaviour
         float frequency = 1;
         float persistence = 0.5f;
 
-        // loop over octaves
+        // loop over octaves and manipulating height
         for (int y = 0; y < octaves; y++)
         {
             float Z = z / scale * frequency + octaveOffsets[y].y;
             float X = x / scale * frequency + octaveOffsets[y].x;
 
-            // Create perlinValues and the * 2 - 1 is to create a flat floor
-            float perlinValue = (Mathf.PerlinNoise(Z, X)) * 2 - 1;
-            noiseHeight += heightCurve.Evaluate(perlinValue) * amplitude;
+            // Create perlinValues and the * 2 - 1 is to create a
+            // levelled ground
+            float perlinAmount = (Mathf.PerlinNoise(Z, X)) * 2 - 1;
+
+            noiseHeight += heightCurve.Evaluate(perlinAmount) * amplitude;
+
             frequency *= lacunarity;
             amplitude *= persistence;
         }
@@ -160,6 +165,8 @@ public class MeshFormation : MonoBehaviour
         for (int z = 0; z < vertices.Length; z++)
         {
             float height = Mathf.InverseLerp(minHeightOfMap, maxHeightOfMap, vertices[i].y);
+
+            // Filling each vertex in the array with the gradient property
             colors[i] = gradient.Evaluate(height);
             i++;
         }
@@ -173,17 +180,16 @@ public class MeshFormation : MonoBehaviour
 
             var noiseHeight = vertexLocations.y;
 
-            if (System.Math.Abs(previousNoiseHeight - vertexLocations.y) < 25)
+            // the lowest height for objects to spawn
+            if (noiseHeight > 100)
             {
-                if (noiseHeight > 100)
+                // Choosing which one of the objects to spawn
+                if (UnityEngine.Random.Range(1, 5) == 1)
                 {
-                    if (UnityEngine.Random.Range(1, 5) == 1)
-                    {
-                        GameObject objectToSpawn = objects[UnityEngine.Random.Range(0, objects.Length)];
-                        var terrainSpawnHeight = noiseHeight * 2;
+                    GameObject objectToSpawn = objects[UnityEngine.Random.Range(0, objects.Length)];
+                    var terrainSpawnHeight = noiseHeight * 2;
 
-                        Instantiate(objectToSpawn, new Vector3(mesh.vertices[i].x * mapScale, terrainSpawnHeight, mesh.vertices[i].z * mapScale), Quaternion.identity);
-                    }
+                    Instantiate(objectToSpawn, new Vector3(mesh.vertices[i].x * mapScale, terrainSpawnHeight, mesh.vertices[i].z * mapScale), Quaternion.identity);
                 }
             }
 
