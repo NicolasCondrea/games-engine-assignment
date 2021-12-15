@@ -123,7 +123,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 34
+  controlID: 15
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 17
+  controlID: 89
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -291,9 +291,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 24615.424, y: -336.5752, z: 24912.246}
+    m_Target: {x: 26264.705, y: 4461.3066, z: 7526.0996}
     speed: 2
-    m_Value: {x: 24615.424, y: -336.5752, z: 24912.246}
+    m_Value: {x: 26264.705, y: 4461.3066, z: 7526.0996}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -340,20 +340,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.09132946, y: -0.031924184, z: 0.0028712545, w: 0.9953393}
+    m_Target: {x: -0.07789366, y: 0.028065579, z: -0.0021414536, w: -0.99660295}
     speed: 2
-    m_Value: {x: 0.091326326, y: -0.03192309, z: 0.002871156, w: 0.9953051}
+    m_Value: {x: -0.07789066, y: 0.028064499, z: -0.0021413711, w: -0.99656457}
   m_Size:
-    m_Target: 15101.5625
+    m_Target: 7533.5444
     speed: 2
-    m_Value: 15101.5625
+    m_Value: 7533.5444
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1.0014995
-    m_SpeedNormalized: 0.5005
+    m_Speed: 1.0005
+    m_SpeedNormalized: 0.5
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -731,18 +731,18 @@ MonoBehaviour:
       m_ExpandedIDs: 52fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Water
-        m_OriginalName: Water
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 18344
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -789,7 +789,8 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders: []
+    m_Folders:
+    - Assets/Materials
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 0
@@ -832,7 +833,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000924800009448000096480000984800009a4800009c480000
+    m_ExpandedIDs: ffffffff000000009248000094480000964800009a4800009c480000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
